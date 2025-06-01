@@ -1,0 +1,451 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+/* Soothing Background Themes */
+.bg-ocean {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+  background-size: 400% 400%;
+  animation: gentleFlow 40s ease-in-out infinite;
+}
+
+.bg-forest {
+  background: radial-gradient(circle at 20% 50%, 
+    #0a2e38 0%, 
+    #134e5e 40%, 
+    #1a3a1a 100%);
+  background-attachment: fixed;
+  transform: translate3d(0,0,0); /* GPU acceleration */
+}
+
+.bg-sunset {
+  background: radial-gradient(circle at 80% 20%,
+    #3a1c71 0%,
+    #d76d77 50%,
+    #ffaf7b 100%);
+  background-attachment: fixed;
+  transform: translate3d(0,0,0); /* GPU acceleration */
+}
+
+.bg-space {
+  background: radial-gradient(circle at center,
+    #000000 0%,
+    #0f2027 30%,
+    #203a43 70%,
+    #2c5364 100%);
+  background-attachment: fixed;
+  transform: translate3d(0,0,0); /* GPU acceleration */
+}
+
+.bg-minimal {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #f5f7fa 100%);
+  background-size: 400% 400%;
+  animation: gentleFlow 30s ease-in-out infinite;
+}
+
+/* Gentle Animations */
+@keyframes gentleFlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 25%;
+  }
+  50% {
+    background-position: 100% 75%;
+  }
+  75% {
+    background-position: 0% 75%;
+  }
+}
+
+/* Floating Particles */
+.particle {
+  position: absolute;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  filter: blur(1px);
+  will-change: transform;
+  pointer-events: none;
+  z-index: 1; /* Ensure particles stay behind content */
+}
+
+.particle::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, 
+    rgba(255,255,255,0.8) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+}
+
+.particle-1 {
+  width: 4px;
+  height: 4px;
+  top: 20%;
+  left: 10%;
+  animation-duration: 12s;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  width: 6px;
+  height: 6px;
+  top: 60%;
+  right: 20%;
+  animation-duration: 15s;
+  animation-delay: 2s;
+}
+
+.particle-3 {
+  width: 3px;
+  height: 3px;
+  bottom: 30%;
+  left: 30%;
+  animation-duration: 10s;
+  animation-delay: 1s;
+}
+
+.particle-4 {
+  width: 5px;
+  height: 5px;
+  top: 40%;
+  right: 40%;
+  animation-duration: 18s;
+  animation-delay: 3s;
+}
+
+.particle-5 {
+  width: 4px;
+  height: 4px;
+  bottom: 60%;
+  left: 60%;
+  animation-duration: 14s;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Breathing Circle Animation */
+.breathing-circle {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 60px rgba(173, 216, 230, 0.1),
+    inset 0 0 30px rgba(173, 216, 230, 0.1);
+  animation: breathe 8s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+}
+
+/* Smooth transitions for everything */
+* {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .particle {
+    display: none;
+  }
+
+  .breathing-circle {
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
+  }
+}
+
+/* Glassmorphism effects */
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+/* Subtle glow effects */
+.glow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Animation for settings panel */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Add these to your existing globals.css */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+/* Ripple effect for play button */
+.play-ripple {
+  position: absolute;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: ripple 2s infinite;
+  pointer-events: none;
+}
+
+/* Add to globals.css */
+.theme-transition {
+  transition: background 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.button-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.settings-panel {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mystical Glow Effects */
+.glow-text {
+  text-shadow: 0 0 10px rgba(255,255,255,0.3),
+               0 0 20px rgba(255,255,255,0.2);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(255,255,255,0.1),
+              inset 0 0 15px rgba(255,255,255,0.1);
+}
+
+/* Ancient Symbol Animation */
+.om-symbol {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-image: url('/om-symbol.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+}
+
+/* Mystical Button Styles */
+.mystic-button {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mystic-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(255,255,255,0.1) 0%, 
+    transparent 70%);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.mystic-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.mystic-button:hover::before {
+  transform: rotate(45deg) translate(10%, 10%);
+}
+
+/* Ancient Paper Effect for Cards */
+.parchment-card {
+  background: rgba(245, 245, 220, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(210, 180, 140, 0.3);
+  box-shadow: 
+    0 0 10px rgba(210, 180, 140, 0.2),
+    inset 0 0 20px rgba(210, 180, 140, 0.1);
+}
+
+/* Mystical Input Sliders */
+.mystic-slider .range-slider__thumb {
+  background: rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.mystic-slider .range-slider__range {
+  background: linear-gradient(to right, 
+    rgba(255,255,255,0.1), 
+    rgba(255,255,255,0.5));
+}
+
+/* Fix timer circle rendering */
+circle[stroke="url(#gradient)"] {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Fix z-index layering */
+.z-below {
+  z-index: -1;
+}
+
+.z-base {
+  z-index: 0;
+}
+
+.z-content {
+  z-index: 10;
+}
+
+.z-overlay {
+  z-index: 20;
+}
+
+/* Fix animation performance */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Fix gradient banding */
+.no-banding {
+  background-blend-mode: overlay;
+  image-rendering: optimizeQuality;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}

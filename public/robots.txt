@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://imeditate.gossorg.in/sitemap.xml

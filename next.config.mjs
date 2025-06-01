@@ -1,4 +1,3 @@
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -24,10 +23,11 @@ const nextConfig = {
     {
       source: '/(.*)',
       headers: [
-        {
-          key: 'X-Frame-Options',
-          value: 'DENY',
-        },
+        // Remove or comment out this header to allow framing
+        // {
+        //   key: 'X-Frame-Options',
+        //   value: 'DENY',
+        // },
         {
           key: 'X-Content-Type-Options',
           value: 'nosniff',
@@ -36,6 +36,12 @@ const nextConfig = {
           key: 'Referrer-Policy',
           value: 'strict-origin-when-cross-origin',
         },
+        // Alternatively, you could use Content-Security-Policy with frame-ancestors
+        // to allow specific origins, e.g.:
+        // {
+        //   key: 'Content-Security-Policy',
+        //   value: "frame-ancestors 'self' your-app-domain.com;",
+        // },
       ],
     },
   ],

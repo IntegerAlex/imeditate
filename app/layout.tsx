@@ -1,5 +1,21 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter, Quicksand } from 'next/font/google'
 import './globals.css'
+
+// Enhanced Typography Setup
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  weight: ['200', '300', '400', '500', '600'],
+})
+
+const quicksand = Quicksand({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-quicksand',
+  weight: ['300', '400', '500', '600', '700'],
+})
 
 export const metadata: Metadata = {
   title: 'iMeditate',
@@ -23,9 +39,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      {/* Removed <Head> component and its contents */}
-      <body className="font-inter min-h-screen bg-white">{children}</body>
+    <html lang="en" className={`${inter.variable} ${quicksand.variable}`}>
+      <body className="font-inter min-h-screen bg-white antialiased">
+        {children}
+      </body>
     </html>
   )
 }

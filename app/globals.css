@@ -64,16 +64,20 @@
 @layer base {
   * {
     @apply border-border;
-    box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+    box-sizing: border-box;
   }
-  html, body { /* Added html for full coverage */
+  
+  html, body {
     @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    overflow: hidden; /* Prevent scrollbars on body */
+    font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
   }
 }
 
@@ -88,7 +92,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enhanced Background Themes (Keep existing, ensure they don't cause overflow) */
+/* Enhanced Background Themes with Soothing Color Palettes */
 .bg-aurora {
   background: 
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
@@ -137,6 +141,47 @@
     radial-gradient(circle at 70% 70%, rgba(195, 207, 226, 0.6) 0%, transparent 50%),
     linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   animation: minimalShift 20s ease-in-out infinite;
+}
+
+/* NEW: Enhanced Calming Themes */
+.bg-lavender-dream {
+  background: 
+    radial-gradient(circle at 25% 75%, rgba(147, 112, 219, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 75% 25%, rgba(230, 230, 250, 0.4) 0%, transparent 50%),
+    linear-gradient(135deg, #e6e6fa 0%, #dda0dd 50%, #d8bfd8 100%);
+  animation: lavenderFlow 28s ease-in-out infinite;
+}
+
+.bg-sage-earth {
+  background: 
+    radial-gradient(circle at 40% 80%, rgba(144, 158, 123, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(188, 184, 138, 0.3) 0%, transparent 45%),
+    linear-gradient(135deg, #a8ad91 0%, #c4c195 50%, #b8b892 100%);
+  animation: sageBreeze 32s ease-in-out infinite;
+}
+
+.bg-rose-mist {
+  background: 
+    radial-gradient(circle at 60% 30%, rgba(255, 182, 193, 0.3) 0%, transparent 55%),
+    radial-gradient(circle at 30% 70%, rgba(255, 228, 225, 0.4) 0%, transparent 50%),
+    linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 50%, #ffc0cb 100%);
+  animation: roseMist 26s ease-in-out infinite;
+}
+
+.bg-dawn-sky {
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(255, 223, 186, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(255, 239, 213, 0.3) 0%, transparent 60%),
+    linear-gradient(135deg, #ffefd5 0%, #ffdab9 50%, #ffe4b5 100%);
+  animation: dawnGlow 24s ease-in-out infinite;
+}
+
+.bg-moonlight {
+  background: 
+    radial-gradient(circle at 70% 30%, rgba(176, 196, 222, 0.3) 0%, transparent 55%),
+    radial-gradient(circle at 30% 70%, rgba(230, 230, 250, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #2f2f4f 0%, #483d8b 50%, #6a5acd 100%);
+  animation: moonlightShimmer 35s ease-in-out infinite;
 }
 
 /* Enhanced Animations */
@@ -197,23 +242,88 @@
   50% { background-position: 70% 30%, 30% 70%, 0% 0%; }
 }
 
+/* NEW: Enhanced Calming Theme Animations */
+@keyframes lavenderFlow {
+  0%, 100% { 
+    background-position: 25% 75%, 75% 25%, 0% 0%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  33% { 
+    background-position: 75% 50%, 25% 50%, 0% 0%;
+    filter: hue-rotate(5deg) brightness(1.05);
+  }
+  66% { 
+    background-position: 50% 25%, 50% 75%, 0% 0%;
+    filter: hue-rotate(10deg) brightness(0.95);
+  }
+}
 
-/* Enhanced Particle System */
+@keyframes sageBreeze {
+  0%, 100% { 
+    background-position: 40% 80%, 80% 20%, 0% 0%;
+    filter: saturate(1);
+  }
+  50% { 
+    background-position: 80% 60%, 20% 40%, 0% 0%;
+    filter: saturate(1.1);
+  }
+}
+
+@keyframes roseMist {
+  0%, 100% { 
+    background-position: 60% 30%, 30% 70%, 0% 0%;
+    filter: brightness(1) contrast(1);
+  }
+  50% { 
+    background-position: 30% 60%, 70% 40%, 0% 0%;
+    filter: brightness(1.05) contrast(1.02);
+  }
+}
+
+@keyframes dawnGlow {
+  0%, 100% { 
+    background-position: 50% 20%, 20% 80%, 0% 0%;
+    filter: brightness(1) saturate(1);
+  }
+  50% { 
+    background-position: 80% 40%, 40% 60%, 0% 0%;
+    filter: brightness(1.08) saturate(1.1);
+  }
+}
+
+@keyframes moonlightShimmer {
+  0%, 100% { 
+    background-position: 70% 30%, 30% 70%, 0% 0%;
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% { 
+    background-position: 50% 50%, 50% 50%, 0% 0%;
+    filter: brightness(1.03) hue-rotate(3deg);
+  }
+  75% { 
+    background-position: 30% 70%, 70% 30%, 0% 0%;
+    filter: brightness(0.97) hue-rotate(-2deg);
+  }
+}
+
+
+/* Enhanced Particle System with Softer Effects */
 .particle-system {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  overflow: hidden; /* Important for particles not causing scroll */
+  overflow: hidden;
 }
+
 .enhanced-particle {
   position: absolute;
   border-radius: 50%;
-  /* filter: blur(0.5px); */ /* Blur can be performance intensive */
+  filter: blur(0.3px);
   will-change: transform, opacity;
-  /* animation: particleFloat 20s linear infinite; */ /* Animation handled by JS */
+  mix-blend-mode: screen;
+  box-shadow: 0 0 4px currentColor;
 }
-/* @keyframes particleFloat { ... } */ /* Animation handled by JS */
 
 /* Enhanced Mouse Follower */
 .mouse-follower {
@@ -233,37 +343,46 @@
 }
 
 
-/* Enhanced Breathing Circle */
+/* Enhanced Breathing Circle with Smoother Animations */
 .enhanced-breathing-circle {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: min(85vw, 85vh); /* Slightly larger */
-  height: min(85vw, 85vh);
-  border: 1px solid rgba(255,255,255,0.08); /* Subtler border */
+  width: min(80vw, 80vh);
+  height: min(80vw, 80vh);
+  border: 1px solid rgba(255,255,255,0.06);
   border-radius: 50%;
-  z-index: 0; /* Behind main content but above background */
-  transition: all 3.5s cubic-bezier(0.42, 0, 0.58, 1), opacity 1s ease-out; /* Smoother, slightly faster breathing */
+  z-index: 0;
+  transition: all 4s cubic-bezier(0.4, 0, 0.6, 1), opacity 1.2s ease-out;
   box-shadow:
-    0 0 80px rgba(255,255,255,0.03), /* More subtle default shadow */
-    inset 0 0 40px rgba(255,255,255,0.03);
+    0 0 60px rgba(255,255,255,0.02),
+    inset 0 0 30px rgba(255,255,255,0.02);
   will-change: transform, box-shadow, opacity;
+  backdrop-filter: blur(0.5px);
 }
 
 .enhanced-breathing-circle.inhale {
   box-shadow:
-    0 0 100px rgba(173, 216, 230, 0.15), /* Adjusted glow */
-    inset 0 0 50px rgba(173, 216, 230, 0.08);
+    0 0 120px rgba(173, 216, 230, 0.12),
+    inset 0 0 60px rgba(173, 216, 230, 0.06),
+    0 0 200px rgba(173, 216, 230, 0.04);
+  border-color: rgba(173, 216, 230, 0.08);
 }
-.enhanced-breathing-circle.hold { /* Added hold state styling */
+
+.enhanced-breathing-circle.hold {
    box-shadow:
-    0 0 110px rgba(200, 220, 255, 0.18),
-    inset 0 0 55px rgba(200, 220, 255, 0.09);
+    0 0 140px rgba(200, 220, 255, 0.15),
+    inset 0 0 70px rgba(200, 220, 255, 0.07),
+    0 0 220px rgba(200, 220, 255, 0.05);
+  border-color: rgba(200, 220, 255, 0.1);
 }
+
 .enhanced-breathing-circle.exhale {
   box-shadow:
-    0 0 90px rgba(255, 182, 193, 0.12), /* Adjusted glow */
-    inset 0 0 45px rgba(255, 182, 193, 0.07);
+    0 0 100px rgba(255, 182, 193, 0.1),
+    inset 0 0 50px rgba(255, 182, 193, 0.05),
+    0 0 180px rgba(255, 182, 193, 0.03);
+  border-color: rgba(255, 182, 193, 0.07);
 }
 
 
@@ -322,38 +441,59 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-/* Enhanced Title Section */
+/* Enhanced Title Section with Improved Typography */
 .title-section {
-  margin-bottom: 0; /* Let gap handle spacing */
+  margin-bottom: 0;
 }
 
 .app-title {
-  font-size: clamp(2.5rem, 6.5vw, 4.5rem); /* Adjusted responsive font size */
-  font-weight: 200;
-  letter-spacing: 0.07em; 
-  margin-bottom: 0.6rem;
-  line-height: 1.15; 
+  font-family: var(--font-quicksand), 'Quicksand', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
   background: linear-gradient(135deg, 
-    rgba(255,255,255,1) 0%, 
-    rgba(255,255,255,0.8) 50%, 
-    rgba(255,255,255,1) 100%);
+    rgba(255,255,255,0.95) 0%, 
+    rgba(255,255,255,0.85) 40%, 
+    rgba(255,255,255,1) 60%,
+    rgba(255,255,255,0.9) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(255,255,255,0.2);
-  animation: titleGlow 5s ease-in-out infinite alternate; 
+  text-shadow: 0 0 30px rgba(255,255,255,0.3);
+  animation: titleGlow 6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
 }
-.title-main { display: inline-block; }
-.title-accent { display: inline-block; }
-.app-subtitle {
-  font-size: clamp(0.85rem, 2.2vw, 1rem); /* Responsive font size */
-  color: rgba(255,255,255,0.7);
+
+.title-main { 
+  display: inline-block; 
+  font-weight: 400;
+}
+
+.title-accent { 
+  display: inline-block;
   font-weight: 300;
-  letter-spacing: 0.02em;
 }
+
+.app-subtitle {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 2.4vw, 1.1rem);
+  color: rgba(255,255,255,0.75);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+
 @keyframes titleGlow {
-  from { text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 3px rgba(255,255,255,0.1); }
-  to { text-shadow: 0 0 30px rgba(255,255,255,0.35), 0 0 8px rgba(255,255,255,0.15); }
+  from { 
+    text-shadow: 0 0 30px rgba(255,255,255,0.3), 0 0 6px rgba(255,255,255,0.15);
+    transform: scale(1);
+  }
+  to { 
+    text-shadow: 0 0 40px rgba(255,255,255,0.4), 0 0 12px rgba(255,255,255,0.2);
+    transform: scale(1.005);
+  }
 }
 
 /* Enhanced Timer Section */
@@ -395,7 +535,7 @@
   stroke-linecap: round;
   transition: stroke-dashoffset 0.9s cubic-bezier(0.33, 1, 0.68, 1), filter 0.5s ease; /* Smoother transition */
 }
-/* Adjusted styles for timer-display */
+/* Enhanced Timer Display with Better Typography */
 .timer-display {
   display: flex;
   flex-direction: column;
@@ -403,33 +543,47 @@
   justify-content: center;
   text-align: center;
   color: white;
-  /* Removed absolute positioning and z-index */
-  position: relative; /* Keep relative position for text centering within itself */
-  transform: none; /* Remove previous translate for centering within circle */
+  position: relative;
   width: auto;
   height: auto;
   padding: 0;
   box-sizing: content-box;
-  margin-top: 1rem; /* Add space between circle and text */
+  margin-top: 1.5rem;
 }
+
 .time-text {
-  font-size: clamp(1.7rem, 6.5vmin, 2rem);
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.15rem;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 6.8vmin, 2.2rem);
+  font-weight: 200;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
   line-height: 1;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
 }
+
 .breathing-instruction {
-  font-size: clamp(0.7rem, 2.2vmin, 0.8rem);
-  color: rgba(255,255,255,0.65);
+  font-family: var(--font-quicksand), 'Quicksand', sans-serif;
+  font-size: clamp(0.75rem, 2.4vmin, 0.85rem);
+  color: rgba(255,255,255,0.7);
   font-weight: 400;
-  animation: breathingPulse 3.5s ease-in-out infinite alternate;
-  line-height: 1.2;
-  margin-top: 2px;
+  letter-spacing: 0.02em;
+  animation: breathingPulse 4s ease-in-out infinite alternate;
+  line-height: 1.3;
+  margin-top: 0.3rem;
+  text-transform: lowercase;
+  font-variant: small-caps;
 }
+
 @keyframes breathingPulse {
-  from { opacity: 0.55; transform: scale(1); }
-  to { opacity: 0.85; transform: scale(1.02); }
+  from { 
+    opacity: 0.6; 
+    transform: scale(1) translateY(0px);
+  }
+  to { 
+    opacity: 0.9; 
+    transform: scale(1.03) translateY(-1px);
+  }
 }
 
 /* Enhanced Play Button */

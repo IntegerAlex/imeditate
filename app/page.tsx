@@ -110,18 +110,60 @@ const backgroundThemes: BackgroundTheme[] = [
     mood: "Mystical",
   },
   {
+    id: "lavender",
+    name: "Lavender Dream",
+    className: "bg-lavender-dream",
+    preview: "linear-gradient(135deg, #e6e6fa 0%, #dda0dd 50%, #d8bfd8 100%)",
+    mood: "Peaceful",
+  },
+  {
+    id: "sage",
+    name: "Sage Earth",
+    className: "bg-sage-earth",
+    preview: "linear-gradient(135deg, #a8ad91 0%, #c4c195 50%, #b8b892 100%)",
+    mood: "Grounding",
+  },
+  {
+    id: "rose",
+    name: "Rose Mist",
+    className: "bg-rose-mist",
+    preview: "linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 50%, #ffc0cb 100%)",
+    mood: "Gentle",
+  },
+  {
+    id: "dawn",
+    name: "Dawn Sky",
+    className: "bg-dawn-sky",
+    preview: "linear-gradient(135deg, #ffefd5 0%, #ffdab9 50%, #ffe4b5 100%)",
+    mood: "Warm",
+  },
+  {
     id: "forest",
     name: "Forest",
     className: "bg-forest-enhanced",
     preview: "linear-gradient(135deg, #134e5e 0%, #71b280 100%)",
-    mood: "Grounding",
+    mood: "Natural",
   },
   {
     id: "sunset",
     name: "Sunset",
     className: "bg-sunset-enhanced",
     preview: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-    mood: "Warm",
+    mood: "Vibrant",
+  },
+  {
+    id: "moonlight",
+    name: "Moonlight",
+    className: "bg-moonlight",
+    preview: "linear-gradient(135deg, #2f2f4f 0%, #483d8b 50%, #6a5acd 100%)",
+    mood: "Tranquil",
+  },
+  {
+    id: "ocean",
+    name: "Ocean",
+    className: "bg-ocean-enhanced",
+    preview: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    mood: "Flowing",
   },
   {
     id: "cosmos",
@@ -129,13 +171,6 @@ const backgroundThemes: BackgroundTheme[] = [
     className: "bg-cosmos",
     preview: "linear-gradient(135deg, #2c3e50 0%, #4a00e0 100%)",
     mood: "Infinite",
-  },
-  {
-    id: "ocean",
-    name: "Ocean",
-    className: "bg-ocean-enhanced",
-    preview: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", // Example, can be unique
-    mood: "Flowing",
   },
   {
     id: "minimal",
@@ -149,7 +184,7 @@ const backgroundThemes: BackgroundTheme[] = [
 export default function MeditationApp() {
   // Enhanced State Management
   const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTheme, setCurrentTheme] = useState("aurora")
+  const [currentTheme, setCurrentTheme] = useState("lavender")
   const [tracks, setTracks] = useState(audioTracks)
   const [timerMinutes, setTimerMinutes] = useState(DEFAULT_TIMER_MINUTES)
   const [timeLeft, setTimeLeft] = useState(DEFAULT_TIME_LEFT)
@@ -186,19 +221,19 @@ export default function MeditationApp() {
     )
   }, [])
 
-  // Enhanced Particle System
+  // Enhanced Particle System with More Subtle Effects
   const generateParticles = useCallback(() => {
-    if (typeof window === "undefined") return // Guard against SSR
-    const newParticles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
-      id: `particle-${Date.now()}-${i}`, // More unique key
+    if (typeof window === "undefined") return
+    const newParticles: Particle[] = Array.from({ length: 15 }, (_, i) => ({
+      id: `particle-${Date.now()}-${i}`,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      size: Math.random() * 3 + 1, // Slightly smaller particles
-      speed: Math.random() * 0.3 + 0.1, // Slower speed
-      opacity: Math.random() * 0.5 + 0.1, // More subtle
-      color: `hsla(${Math.random() * 60 + 180}, 70%, 80%, ${
-        Math.random() * 0.5 + 0.3
-      })`, // Use hsla for opacity control
+      size: Math.random() * 2 + 0.5, // Smaller, more delicate particles
+      speed: Math.random() * 0.2 + 0.05, // Slower movement
+      opacity: Math.random() * 0.3 + 0.1, // More subtle opacity
+      color: `hsla(${Math.random() * 80 + 180}, 60%, 85%, ${
+        Math.random() * 0.4 + 0.2
+      })`, // Softer colors
     }))
     setParticles(newParticles)
   }, [])
@@ -208,14 +243,14 @@ export default function MeditationApp() {
       prevParticles
         .map(particle => {
           let newY = particle.y - particle.speed
-          let newX = particle.x + Math.sin(newY * 0.01 + particle.id.length) * 0.3 // Add some variation
-          let newOpacity = particle.opacity * 0.998 // Slower fade
+          let newX = particle.x + Math.sin(newY * 0.008 + particle.id.length) * 0.2 // Gentler wave motion
+          let newOpacity = particle.opacity * 0.9995 // Very slow fade
 
           if (newY < -particle.size) {
-            // Reset particle from bottom
+            // Reset particle from bottom with gentle variation
             newY = window.innerHeight + particle.size
             newX = Math.random() * window.innerWidth
-            newOpacity = Math.random() * 0.5 + 0.1
+            newOpacity = Math.random() * 0.3 + 0.1
           }
 
           return {
@@ -225,8 +260,8 @@ export default function MeditationApp() {
             opacity: newOpacity,
           }
         })
-        .filter(p => p.opacity > 0.01),
-    ) // Filter out very transparent particles
+        .filter(p => p.opacity > 0.05), // Keep particles visible longer
+    )
 
     particleAnimationRef.current = requestAnimationFrame(animateParticles)
   }, [])

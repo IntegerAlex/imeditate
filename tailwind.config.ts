@@ -10,6 +10,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+      fontFamily: {
+        inter: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        quicksand: ['var(--font-quicksand)', 'Quicksand', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

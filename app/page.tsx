@@ -186,19 +186,27 @@ export default function MeditationApp() {
     )
   }, [])
 
-  // Enhanced Particle System
+  // Enhanced Particle System with 90s Colors
   const generateParticles = useCallback(() => {
     if (typeof window === "undefined") return // Guard against SSR
-    const newParticles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
-      id: `particle-${Date.now()}-${i}`, // More unique key
+    const neonColors = [
+      '#ff00ff', // Magenta
+      '#00ffff', // Cyan  
+      '#ffff00', // Yellow
+      '#ff1493', // Deep Pink
+      '#00ff7f', // Spring Green
+      '#ff4500', // Orange Red
+      '#8a2be2', // Blue Violet
+      '#00bfff', // Deep Sky Blue
+    ]
+    const newParticles: Particle[] = Array.from({ length: 25 }, (_, i) => ({
+      id: `particle-${Date.now()}-${i}`,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      size: Math.random() * 3 + 1, // Slightly smaller particles
-      speed: Math.random() * 0.3 + 0.1, // Slower speed
-      opacity: Math.random() * 0.5 + 0.1, // More subtle
-      color: `hsla(${Math.random() * 60 + 180}, 70%, 80%, ${
-        Math.random() * 0.5 + 0.3
-      })`, // Use hsla for opacity control
+      size: Math.random() * 4 + 2, // Slightly larger particles
+      speed: Math.random() * 0.4 + 0.2, // Slightly faster
+      opacity: Math.random() * 0.6 + 0.2, // More visible
+      color: neonColors[Math.floor(Math.random() * neonColors.length)],
     }))
     setParticles(newParticles)
   }, [])
@@ -526,10 +534,11 @@ export default function MeditationApp() {
             {/* SVG now only for the circles */}
             <svg className="timer-svg" viewBox="0 0 100 100">
               <defs>
-                <linearGradient id="timerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#60a5fa" />
-                  <stop offset="50%" stopColor="#3b82f6" />
-                  <stop offset="100%" stopColor="#2563eb" />
+                <linearGradient id="retroTimerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#ff00ff" />
+                  <stop offset="33%" stopColor="#00ffff" />
+                  <stop offset="66%" stopColor="#ffff00" />
+                  <stop offset="100%" stopColor="#ff1493" />
                 </linearGradient>
               </defs>
               <circle cx="50" cy="50" r="45" className="timer-bg" />
@@ -540,7 +549,7 @@ export default function MeditationApp() {
                 className="timer-progress"
                 strokeDasharray={circumference}
                 strokeDashoffset={offset}
-                stroke="url(#timerGradient)"
+                stroke="url(#retroTimerGradient)"
               />
             </svg>
 
